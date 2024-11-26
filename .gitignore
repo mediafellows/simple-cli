@@ -2,5 +2,4 @@ coverage
 rdoc
 pkg
 log/*log
-Gemfile.lock
 simple-cli*gem
