@@ -16,6 +16,8 @@ Gem::Specification.new do |gem|
   gem.homepage = "https://github.com/mediafellows/simple-cli"
   gem.summary  = "Simple CLI builder for ruby"
 
+  gem.metadata["github_repo"] = "https://github.com/mediafellows/simple-cl"
+
   gem.description = "Simple CLI builder"
 
   gem.files         = `git ls-files`.split($/)
