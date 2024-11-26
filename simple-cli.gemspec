@@ -9,7 +9,7 @@ require 'simple/cli/version'
 
 Gem::Specification.new do |gem|
   gem.name     = "simple-cli"
-  gem.version  = Simple::CLI::VERSION
+  gem.version  = File.read('VERSION')
 
   gem.authors  = [ "radiospiel", "mediapeers GmbH" ]
   gem.email    = "eno@radiospiel.org"
