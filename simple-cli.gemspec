@@ -11,9 +11,9 @@ Gem::Specification.new do |gem|
   gem.name     = "simple-cli"
   gem.version  = File.read('VERSION')
 
-  gem.authors  = [ "radiospiel", "mediapeers GmbH" ]
+  gem.authors  = [ "radiospiel", "Mediafellows GmbH" ]
   gem.email    = "eno@radiospiel.org"
-  gem.homepage = "http://github.com/radiospiel/simple-cli"
+  gem.homepage = "https://github.com/mediafellows/simple-cli"
   gem.summary  = "Simple CLI builder for ruby"
 
   gem.description = "Simple CLI builder"
