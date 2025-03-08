@@ -24,6 +24,10 @@ module Simple::CLI
   # Implementations might override this method to provide some before/after
   # functionality.
   def run!(command, *args)
-    send(command, *args)
+    if args.length == 1 && args[0].is_a?(Hash)
+      send(command, **args[0])  # Unpack hash as keywords
+    else
+      send(command, *args)      # Fallback for non-hash args
+    end
   end
 end
