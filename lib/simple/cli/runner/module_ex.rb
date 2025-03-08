@@ -27,14 +27,14 @@ class Module
     # the default values.
 
     fake_recipient = Object.new.extend(self)
-    fake_call_args = minimal_arguments(method)
+    fake_positional_args, fake_keyword_args = minimal_arguments(method)
 
     trace_point = TracePoint.trace(:call) do |tp|
       throw :received_fake_call, tp.binding if tp.defined_class == self && tp.method_id == method_id
     end
 
     bnd = catch(:received_fake_call) do
-      fake_recipient.send(method_id, *fake_call_args)
+      fake_recipient.send(method_id, *fake_positional_args, **fake_keyword_args)
     end
 
     trace_point.disable
@@ -56,14 +56,11 @@ class Module
   def minimal_arguments(method)
     # Build an arguments array with holds all required parameters. The actual
     # values for these arguments doesn't matter at all.
-    args = method.parameters.select { |mode, _name| mode == :req }
+    positional_args = method.parameters.select { |mode, _name| mode == :req }.map { |_, name| name }
 
-    # Add a hash with all required keyword arguments
     required_keyword_args = method.parameters.each_with_object({}) do |(mode, name), hsh|
       hsh[name] = :anything if mode == :keyreq
     end
-    args << required_keyword_args if required_keyword_args
-
-    args
+    [positional_args, required_keyword_args]
   end
 end
